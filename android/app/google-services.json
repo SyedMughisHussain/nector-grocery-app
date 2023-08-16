@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358206583652",
+    "project_id": "nector-app",
+    "storage_bucket": "nector-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358206583652:android:dbad367c9c89f22f0e8071",
+        "android_client_info": {
+          "package_name": "com.example.nector_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358206583652-5t3e31klhgteviuphr87mo9ik37kcvik.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw--vf52_e87qVCrYpMkhbrXNSCsGZUx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358206583652-5t3e31klhgteviuphr87mo9ik37kcvik.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
