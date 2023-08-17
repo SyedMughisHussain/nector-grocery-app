@@ -52,7 +52,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               const SizedBox(
                 height: 30,
               ),
-              const CustomButton('Get Started'),
+              const CustomButton('Get Started', goToAnotherPage),
             ],
           ),
         ),
@@ -60,3 +60,5 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 }
+
+void goToAnotherPage() {}

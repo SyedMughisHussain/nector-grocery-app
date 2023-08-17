@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton(this.btnText, {super.key});
+  const CustomButton(this.btnText, this.function, {super.key});
   final String btnText;
+  final Function function;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: function(),
       child: Container(
         alignment: Alignment.center,
         height: 55,
