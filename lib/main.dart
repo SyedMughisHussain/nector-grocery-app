@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:nector_app/auth/log_in.dart';
 //import 'package:groccery_app/auth/splash_screen.dart';
-
+// ignore: depend_on_referenced_packages
+import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 //import 'auth/on_boarding.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -20,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LoginAndSignUpscreen(),
+      home: const LogInScreen(),
     );
   }
 }

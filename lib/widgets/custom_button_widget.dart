@@ -10,11 +10,11 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: function(),
+      onTap: () => function,
       child: Container(
         alignment: Alignment.center,
         height: 55,
-        width: 350,
+        width: 370,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: AppColors.splashBackgroundColor,
