@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class AuthFunction {
+class AuthService {
   UserCredential? userCredential;
   Future<void> signUp(BuildContext context, String userEmail,
       String userPassword, String userName) async {
@@ -21,7 +21,7 @@ class AuthFunction {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(error.code)));
     } catch (error) {
-      print(error);
+      //print(error);
     }
   }
 
@@ -40,7 +40,7 @@ class AuthFunction {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(error.code)));
     } catch (error) {
-      print(error);
+      //print(error);
     }
   }
 }

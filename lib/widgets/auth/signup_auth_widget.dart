@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:nector_app/services/functions/auth_functions.dart';
-import 'package:nector_app/utils/colors.dart';
 
 import '../../pages/others/home_page.dart';
+import '../../services/functions/auth_functions.dart';
+import '../../utils/colors.dart';
 import '../custom_button_widget.dart';
 
-class LoginFormWidget extends StatefulWidget {
-  const LoginFormWidget({super.key});
+class SignUpFormWidget extends StatefulWidget {
+  const SignUpFormWidget({super.key});
 
   @override
-  State<LoginFormWidget> createState() => _LoginFormWidgetState();
+  State<SignUpFormWidget> createState() => _SignUpFormWidgetState();
 }
 
-class _LoginFormWidgetState extends State<LoginFormWidget> {
+class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
+  var userName = '';
   var email = '';
   var password = '';
 
-  void tryLogin() {
+  void trySignUp() {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
     if (isValid) {
       _formKey.currentState!.save();
-      AuthService().logIn(context, email, password);
+      AuthService().signUp(context, email, password, userName);
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const HomePage()));
     }
@@ -38,6 +39,33 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           children: [
             const SizedBox(
               height: 20,
+            ),
+            TextFormField(
+              cursorColor: AppColors.blackColor,
+              keyboardType: TextInputType.name,
+              onSaved: (newValue) {
+                userName = newValue!;
+              },
+              validator: (value) {
+                if (value == null || value.length <= 4) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Enter a valid user name')));
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                  hintText: 'Enter your username',
+                  label: Text(
+                    'Username',
+                    style: TextStyle(color: AppColors.blackColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.darkGreyColor)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)))),
+            ),
+            const SizedBox(
+              height: 30,
             ),
             TextFormField(
               cursorColor: AppColors.blackColor,
@@ -105,22 +133,29 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
             const SizedBox(
               height: 15,
             ),
-            Container(
-              alignment: Alignment.topRight,
-              child: const Text(
-                'Forgot password?',
-                textAlign: TextAlign.end,
-              ),
+            RichText(
+              text: const TextSpan(
+                  text: 'By continuing you agree to our ',
+                  style: TextStyle(color: AppColors.blackColor),
+                  children: [
+                    TextSpan(
+                        text: 'Terms of service and Privacy Policy',
+                        style:
+                            TextStyle(color: AppColors.splashBackgroundColor)),
+                  ]),
             ),
-            CustomButton('Log In', tryLogin),
+            const SizedBox(
+              height: 15,
+            ),
+            CustomButton('Sign Up', trySignUp),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Dont\'t have an account?'),
+                const Text('Already have an account?'),
                 TextButton(
                     onPressed: () {},
                     child: const Text(
-                      'Signup',
+                      'SignUp',
                       style: TextStyle(color: AppColors.splashBackgroundColor),
                     ))
               ],
