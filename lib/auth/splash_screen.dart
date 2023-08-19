@@ -1,10 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:nector_app/pages/others/home_page.dart';
 
 import '../utils/colors.dart';
 import '../utils/images.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        const Duration(seconds: 3),
+        () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context) => const HomePage())));
+  }
 
   @override
   Widget build(BuildContext context) {

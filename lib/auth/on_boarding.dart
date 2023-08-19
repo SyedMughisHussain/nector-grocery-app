@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nector_app/auth/log_in.dart';
+//import 'package:nector_app/pages/others/home_page.dart';
 
 import '../utils/colors.dart';
 import '../utils/images.dart';
@@ -61,4 +63,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 }
 
-void goToAnotherPage() {}
+void goToAnotherPage(BuildContext context) {
+  Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: ((context) => const LogInScreen())));
+}

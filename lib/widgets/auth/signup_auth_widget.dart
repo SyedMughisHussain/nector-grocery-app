@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nector_app/auth/log_in.dart';
 
 import '../../pages/others/home_page.dart';
 import '../../services/functions/auth_functions.dart';
@@ -153,7 +154,10 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
               children: [
                 const Text('Already have an account?'),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const LogInScreen()));
+                    },
                     child: const Text(
                       'SignUp',
                       style: TextStyle(color: AppColors.splashBackgroundColor),
