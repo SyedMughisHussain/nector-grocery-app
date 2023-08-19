@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class AuthService {
   UserCredential? userCredential;
   Future<void> signUp(BuildContext context, String userEmail,
-      String userPassword, String userName) async {
+      String userPassword, String userName, String address) async {
     try {
       userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
@@ -16,10 +16,11 @@ class AuthService {
           .set({
         'userEmail': userEmail,
         'userName': userName,
+        'address': address,
       });
     } on FirebaseAuthException catch (error) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(error.code)));
+          .showSnackBar(SnackBar(content: Text(error.message.toString())));
     } catch (error) {
       //print(error);
     }
@@ -30,17 +31,15 @@ class AuthService {
     try {
       userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: userEmail, password: userPassword);
-      // await FirebaseFirestore.instance
-      //     .collection('users')
-      //     .doc(userCredential!.user!.uid)
-      //     .set({
-      //   'userEmail': userEmail,
-      // });
     } on FirebaseAuthException catch (error) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(error.code)));
+          .showSnackBar(SnackBar(content: Text(error.message.toString())));
     } catch (error) {
       //print(error);
     }
   }
+}
+
+Future<void> logOut() async {
+  await FirebaseAuth.instance.signOut();
 }

@@ -18,6 +18,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
   bool _obscureText = true;
   var userName = '';
   var email = '';
+  var address = '';
   var password = '';
 
   void trySignUp() {
@@ -25,7 +26,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
     FocusScope.of(context).unfocus();
     if (isValid) {
       _formKey.currentState!.save();
-      AuthService().signUp(context, email, password, userName);
+      AuthService().signUp(context, email, password, userName, address);
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const HomePage()));
     }
@@ -66,7 +67,7 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                       borderRadius: BorderRadius.all(Radius.circular(5.0)))),
             ),
             const SizedBox(
-              height: 30,
+              height: 15,
             ),
             TextFormField(
               cursorColor: AppColors.blackColor,
@@ -94,7 +95,34 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
                       borderRadius: BorderRadius.all(Radius.circular(5.0)))),
             ),
             const SizedBox(
-              height: 30,
+              height: 15,
+            ),
+            TextFormField(
+              cursorColor: AppColors.blackColor,
+              keyboardType: TextInputType.emailAddress,
+              onSaved: (newValue) {
+                address = newValue!;
+              },
+              validator: (value) {
+                if (value == null || value.length < 5) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Enter a valid address.')));
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                  hintText: 'Enter your address',
+                  label: Text(
+                    'Address',
+                    style: TextStyle(color: AppColors.blackColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: AppColors.darkGreyColor)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)))),
+            ),
+            const SizedBox(
+              height: 15,
             ),
             TextFormField(
               cursorColor: AppColors.blackColor,

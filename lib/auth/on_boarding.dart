@@ -54,7 +54,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               const SizedBox(
                 height: 30,
               ),
-              const CustomButton('Get Started', goToAnotherPage),
+              CustomButton('Get Started', () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: ((context) => const LogInScreen())));
+              }),
             ],
           ),
         ),
@@ -63,7 +66,4 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 }
 
-void goToAnotherPage(BuildContext context) {
-  Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: ((context) => const LogInScreen())));
-}
+void goToAnotherPage(BuildContext context) {}
