@@ -4,6 +4,8 @@ import '../../utils/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../widgets/home/corousel.dart';
+import '../../widgets/home/exclusive_order.dart';
+import '../../widgets/home/offers_streambuilder.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,17 +41,22 @@ class _HomePageState extends State<HomePage> {
           fit: BoxFit.cover,
         ),
       ),
-      body: Column(
-        children: [
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Icon(Icons.location_on),
-            Text(
-              useraddress,
-              style: const TextStyle(color: AppColors.blackColor),
-            ),
-          ]),
-          const CorouselImages(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Icon(Icons.location_on),
+              Text(
+                useraddress,
+                style: const TextStyle(color: AppColors.blackColor),
+              ),
+            ]),
+            const CorouselImages(),
+            const ExclusiveOffer(),
+            const OffersStreamBuilder(),
+          ],
+        ),
       ),
     );
   }
