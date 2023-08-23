@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nector_app/widgets/home/offers_listview.dart';
+import 'package:nector_app/widgets/home/exclusive_offer/offers_listview.dart';
 
 class OffersStreamBuilder extends StatelessWidget {
   const OffersStreamBuilder({super.key});

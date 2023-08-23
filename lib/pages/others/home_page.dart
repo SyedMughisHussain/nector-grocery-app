@@ -1,11 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../utils/colors.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../widgets/home/corousel.dart';
-import '../../widgets/home/exclusive_order.dart';
-import '../../widgets/home/offers_streambuilder.dart';
+import '../../widgets/home/exclusive_offer/exclusive_order.dart';
+import '../../widgets/home/fetchAddress/fetch_address.dart';
+import '../../widgets/home/exclusive_offer/offers_streambuilder.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,19 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    userAddress.get().then((DocumentSnapshot ds) {
-      useraddress = ds['address'];
-    });
-  }
-
-  String useraddress = '';
-
-  DocumentReference userAddress = FirebaseFirestore.instance
-      .collection('users')
-      .doc(FirebaseAuth.instance.currentUser!.uid);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,20 +28,21 @@ class _HomePageState extends State<HomePage> {
           fit: BoxFit.cover,
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Icon(Icons.location_on),
-              Text(
-                useraddress,
-                style: const TextStyle(color: AppColors.blackColor),
-              ),
+              Icon(Icons.location_on),
+              FetchUserAddress()
+              // Text(
+              //   useraddress,
+              //   style: const TextStyle(color: AppColors.blackColor),
+              // ),
             ]),
-            const CorouselImages(),
-            const ExclusiveOffer(),
-            const OffersStreamBuilder(),
+            CorouselImages(),
+            ExclusiveOffer(),
+            OffersStreamBuilder(),
           ],
         ),
       ),
