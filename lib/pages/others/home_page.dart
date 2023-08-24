@@ -34,11 +34,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Icon(Icons.location_on),
-              FetchUserAddress()
-              // Text(
-              //   useraddress,
-              //   style: const TextStyle(color: AppColors.blackColor),
-              // ),
+              FetchUserAddress(),
             ]),
             CorouselImages(),
             ExclusiveOffer(),
