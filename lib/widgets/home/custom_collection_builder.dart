@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nector_app/widgets/home/exclusive_offer/offers_listview.dart';
+import 'package:nector_app/widgets/home/custom_collection_builder_item.dart';
 
-import '../../../pages/others/detail_page.dart';
+import '../../pages/others/detail_page.dart';
 
-class OffersStreamBuilder extends StatelessWidget {
-  const OffersStreamBuilder({super.key});
+class CustomCollectionBuilder extends StatelessWidget {
+  const CustomCollectionBuilder(this.collectionName, {super.key});
+  final String collectionName;
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('products').snapshots(),
+        stream:
+            FirebaseFirestore.instance.collection(collectionName).snapshots(),
         builder: (contetx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -33,7 +35,7 @@ class OffersStreamBuilder extends StatelessWidget {
                               builder: (context) =>
                                   DetailPage(snapshot.data!.docs[index])));
                         },
-                        child: OffersListView(
+                        child: CustomListViewItem(
                             snapshot.data!.docs[index]['productName'],
                             snapshot.data!.docs[index]['imageUrl'],
                             snapshot.data!.docs[index]['productQuantity'],

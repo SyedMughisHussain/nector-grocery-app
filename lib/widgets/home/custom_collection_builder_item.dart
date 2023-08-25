@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nector_app/utils/colors.dart';
 
-class OffersListView extends StatelessWidget {
-  const OffersListView(this.pName, this.pImageUrl, this.pQuantity, this.pPrice,
+class CustomListViewItem extends StatelessWidget {
+  const CustomListViewItem(
+      this.pName, this.pImageUrl, this.pQuantity, this.pPrice,
       {super.key});
 
   final String pName;

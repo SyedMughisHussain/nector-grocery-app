@@ -2,10 +2,12 @@
 import 'package:flutter/material.dart';
 import '../../utils/colors.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../widgets/home/bestselling/best_selling.dart';
 import '../../widgets/home/corousel.dart';
-import '../../widgets/home/exclusive_offer/exclusive_order.dart';
+import '../../widgets/home/exclusive_offer/exclusive_offer.dart';
 import '../../widgets/home/fetchAddress/fetch_address.dart';
-import '../../widgets/home/exclusive_offer/offers_streambuilder.dart';
+import '../../widgets/home/custom_collection_builder.dart';
+import '../../widgets/home/groccesories/groccesories.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,7 +40,11 @@ class _HomePageState extends State<HomePage> {
             ]),
             CorouselImages(),
             ExclusiveOffer(),
-            OffersStreamBuilder(),
+            CustomCollectionBuilder('exclusiveProducts'),
+            BestSelling(),
+            CustomCollectionBuilder('exclusiveProducts'),
+            Grocessories(),
+            CustomCollectionBuilder('exclusiveProducts'),
           ],
         ),
       ),

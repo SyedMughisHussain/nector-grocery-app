@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nector_app/utils/colors.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:nector_app/widgets/custom_button_widget.dart';
 
 // ignore: must_be_immutable
 class DetailPage extends StatelessWidget {
@@ -146,12 +147,14 @@ class DetailPage extends StatelessWidget {
                         size: 15,
                         color: Colors.amber,
                       ),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      },
-                    )
+                      onRatingUpdate: (double value) {},
+                    ),
                   ],
                 ),
+                const SizedBox(
+                  height: 30,
+                ),
+                CustomButton('Add To Basket', () {})
               ],
             ),
           )
