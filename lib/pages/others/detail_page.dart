@@ -154,7 +154,7 @@ class DetailPage extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                CustomButton('Add To Basket', () {})
+                CustomButton('Add To Basket', () {}),
               ],
             ),
           )

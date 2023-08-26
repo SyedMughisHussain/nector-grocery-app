@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:nector_app/pages/others/home_page.dart';
-
+import '../pages/tabs/bottom_navigation_bar.dart';
 import '../utils/colors.dart';
 import '../utils/images.dart';
 
@@ -20,7 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         const Duration(seconds: 3),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => const HomePage())));
+            builder: (BuildContext context) =>
+                const BottomNavigationBarPage())));
   }
 
   @override
