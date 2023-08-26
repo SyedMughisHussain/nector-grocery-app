@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nector_app/utils/colors.dart';
+
+import '../custom_gridview_builder.dart';
 //import '../../services/models/product_model.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -29,7 +31,11 @@ class _ExclusiveOfferState extends State<ExclusiveOffer> {
               width: 120,
             ),
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          const CustomGridviewbuilder('exclusiveProducts')));
+                },
                 child: const Text(
                   'See All',
                   style: TextStyle(color: AppColors.splashBackgroundColor),

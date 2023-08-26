@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:nector_app/utils/colors.dart';
 
-class CustomListViewItem extends StatelessWidget {
-  const CustomListViewItem(
-      this.pName, this.pImageUrl, this.pQuantity, this.pPrice,
+class CustomGridViewItem extends StatelessWidget {
+  const CustomGridViewItem(
+      this.pName, this.pPrice, this.imageUrl, this.pQuantity,
       {super.key});
-
+  //final String title;
   final String pName;
-  final String pImageUrl;
   final String pQuantity;
   final String pPrice;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 17,
-      ),
+      padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: const Color.fromARGB(255, 206, 204, 204)),
@@ -29,7 +27,7 @@ class CustomListViewItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.network(
-                pImageUrl,
+                imageUrl,
                 fit: BoxFit.cover,
                 height: 60,
               ),

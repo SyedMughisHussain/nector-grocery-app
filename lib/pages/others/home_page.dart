@@ -39,11 +39,29 @@ class _HomePageState extends State<HomePage> {
               FetchUserAddress(),
             ]),
             CorouselImages(),
+            SizedBox(
+              height: 10,
+            ),
             ExclusiveOffer(),
+            SizedBox(
+              height: 10,
+            ),
             CustomCollectionBuilder('exclusiveProducts'),
+            SizedBox(
+              height: 10,
+            ),
             BestSelling(),
-            CustomCollectionBuilder('exclusiveProducts'),
+            SizedBox(
+              height: 10,
+            ),
+            CustomCollectionBuilder('bestSellingProducts'),
+            SizedBox(
+              height: 10,
+            ),
             Grocessories(),
+            SizedBox(
+              height: 10,
+            ),
             CustomCollectionBuilder('exclusiveProducts'),
           ],
         ),
