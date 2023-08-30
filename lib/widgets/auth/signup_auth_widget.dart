@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nector_app/auth/log_in.dart';
 
-import '../../pages/others/home_page.dart';
+//import '../../pages/others/home_page.dart';
 import '../../pages/tabs/bottom_navigation_bar.dart';
 import '../../services/functions/auth_functions.dart';
 import '../../utils/colors.dart';
