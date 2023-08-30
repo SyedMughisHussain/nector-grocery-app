@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nector_app/utils/colors.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -8,6 +10,21 @@ class DetailPage extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   var product;
   DetailPage(this.product, {super.key});
+
+  Future<void> addToCart() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseAuth auth = FirebaseAuth.instance;
+    firestore
+        .collection('userCarts')
+        .doc(auth.currentUser!.uid)
+        .collection('userCart')
+        .doc()
+        .set({
+      'productName': product['productName'],
+      'productPrice': product['productPrice'],
+      'imageUrl': product['imageUrl'],
+    }).then((value) => print('Added to cart'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +171,7 @@ class DetailPage extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                CustomButton('Add To Basket', () {}),
+                CustomButton('Add To Basket', addToCart),
               ],
             ),
           )

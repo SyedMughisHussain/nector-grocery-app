@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nector_app/auth/log_in.dart';
 
 import '../../pages/others/home_page.dart';
+import '../../pages/tabs/bottom_navigation_bar.dart';
 import '../../services/functions/auth_functions.dart';
 import '../../utils/colors.dart';
 import '../custom_button_widget.dart';
@@ -27,8 +28,8 @@ class _SignUpFormWidgetState extends State<SignUpFormWidget> {
     if (isValid) {
       _formKey.currentState!.save();
       AuthService().signUp(context, email, password, userName, address);
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomePage()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const BottomNavigationBarPage()));
     }
   }
 

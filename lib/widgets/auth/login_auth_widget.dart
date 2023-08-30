@@ -3,7 +3,8 @@ import 'package:nector_app/auth/sign_up.dart';
 import 'package:nector_app/services/functions/auth_functions.dart';
 import 'package:nector_app/utils/colors.dart';
 
-import '../../pages/others/home_page.dart';
+//import '../../pages/others/home_page.dart';
+import '../../pages/tabs/bottom_navigation_bar.dart';
 import '../custom_button_widget.dart';
 
 class LoginFormWidget extends StatefulWidget {
@@ -25,8 +26,8 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
     if (isValid) {
       _formKey.currentState!.save();
       AuthService().logIn(context, email, password);
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomePage()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const BottomNavigationBarPage()));
     }
   }
 

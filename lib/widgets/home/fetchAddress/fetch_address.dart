@@ -17,7 +17,10 @@ class FetchUserAddress extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           var userAddress = snapshot.data;
-          return Text(userAddress!['address']);
+          if (userAddress == null) {
+            return const Text('user Address');
+          }
+          return Text(userAddress['address']);
         });
   }
 }
