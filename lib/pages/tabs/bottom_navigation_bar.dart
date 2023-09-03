@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nector_app/pages/others/home_page.dart';
 import 'package:nector_app/utils/colors.dart';
-
 import '../others/cart_page.dart';
 import '../others/explore_page.dart';
 import '../others/favourite_products_page.dart';

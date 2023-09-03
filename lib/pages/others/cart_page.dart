@@ -11,39 +11,54 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteColor,
+      appBar: AppBar(
         backgroundColor: AppColors.whiteColor,
-        appBar: AppBar(
-          backgroundColor: AppColors.whiteColor,
-          centerTitle: true,
-          title: const Text(
-            'My Cart',
-            style: TextStyle(
-                color: AppColors.blackColor, fontWeight: FontWeight.w600),
-          ),
+        centerTitle: true,
+        title: const Text(
+          'My Cart',
+          style: TextStyle(
+              color: AppColors.blackColor, fontWeight: FontWeight.w600),
         ),
-        body: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('userCarts')
-                .doc(FirebaseAuth.instance.currentUser!.uid)
-                .collection('userCart')
-                .snapshots(),
-            builder: (context, cartSnapShot) {
-              if (cartSnapShot.connectionState == ConnectionState.waiting) {
-                const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (!cartSnapShot.hasData) {
-                return const Center(
-                  child: Text('Nothing in cart'),
-                );
-              }
-              return ListView.builder(
-                  itemCount: cartSnapShot.data!.docs.length,
-                  itemBuilder: (context, index) => CartItem(
-                      cartSnapShot.data!.docs[index]['imageUrl'],
-                      cartSnapShot.data!.docs[index]['productPrice'],
-                      cartSnapShot.data!.docs[index]['productName'],
-                      cartSnapShot.data!.docs[index]['productQuantity']));
-            }));
+      ),
+      body: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection('userCarts')
+              .doc(FirebaseAuth.instance.currentUser!.uid)
+              .collection('userCart')
+              .snapshots(),
+          builder: (context, cartSnapShot) {
+            if (cartSnapShot.connectionState == ConnectionState.waiting) {
+              const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Column(children: [
+              Expanded(
+                  child: ListView.builder(
+                      itemCount: cartSnapShot.data == null
+                          ? 0
+                          : cartSnapShot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        DocumentSnapshot documentSnapshot =
+                            cartSnapShot.data!.docs[index];
+                        return CartItem(() {
+                          FirebaseFirestore.instance
+                              .collection('userCarts')
+                              .doc(FirebaseAuth.instance.currentUser!.uid)
+                              .collection('userCart')
+                              .doc(documentSnapshot.id)
+                              .delete()
+                              .then((value) =>
+                                  print('SuccesFully deleted item.'));
+                        },
+                            documentSnapshot['imageUrl'],
+                            documentSnapshot['productPrice'],
+                            documentSnapshot['productName'],
+                            documentSnapshot['productQuantity']);
+                      })),
+            ]);
+          }),
+    );
   }
 }

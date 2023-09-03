@@ -27,6 +27,22 @@ class DetailPage extends StatelessWidget {
     }).then((value) => print('Added to cart'));
   }
 
+  Future<void> favouriteProduct() async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseAuth auth = FirebaseAuth.instance;
+    firestore
+        .collection('userFavourites')
+        .doc(auth.currentUser!.uid)
+        .collection('userFavourite')
+        .doc()
+        .set({
+      'productName': product['productName'],
+      'productPrice': product['productPrice'],
+      'imageUrl': product['imageUrl'],
+      'productQuantity': product['productQuantity'],
+    }).then((value) => print('Added to Favourite'));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,8 +98,10 @@ class DetailPage extends StatelessWidget {
                             fontSize: 25),
                       ),
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.favorite_border))
+                          onPressed: () {
+                            favouriteProduct();
+                          },
+                          icon: const Icon(Icons.favorite_rounded))
                     ],
                   ),
                   Text(
